@@ -1,0 +1,38 @@
+name: MetalSceneEngine
+options:
+  bundleIdPrefix: com.yourcompany.metalscene
+  deploymentTarget:
+    iOS: "15.0"
+    macOS: "12.0"
+packages: {}
+targets:
+  MetalSceneEngine:
+    type: framework
+    platform:
+      - iOS
+      - macOS
+    sources:
+      - path: Sources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.metalscene.engine
+        ENABLE_TESTABILITY: true
+        SWIFT_VERSION: "5.9"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        MTL_ENABLE_DEBUG_INFO: "YES"
+        # 默认使用 Apple 硅 GPU 特性集
+        METAL_DEVICE_WRAPPER_TYPE: ""
+  DemoApp:
+    type: application
+    platform:
+      - iOS
+      - macOS
+    sources:
+      - path: Demo
+    dependencies:
+      - target: MetalSceneEngine
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourcompany.metalscene.demo
+        INFOPLIST_FILE: Demo/Info.plist
+        CODE_SIGN_STYLE: Automatic

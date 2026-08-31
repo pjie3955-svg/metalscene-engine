@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>分镜板 ·《那盏一直亮着的灯》</title>
+<style>
+  :root{
+    --bg:#fbf6ee;
+    --paper:#fffdf9;
+    --ink:#3a352f;
+    --ink-soft:#7a7168;
+    --line:#ece2d4;
+    --amber:#e8a13c;
+    --amber-soft:#f6d9a8;
+    --warm:#f3b65c;
+    --shadow:0 8px 28px rgba(120,90,40,.10);
+    --radius:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;
+    padding:32px 18px 64px;
+  }
+  .wrap{max-width:920px;margin:0 auto}
+
+  /* ---- cover ---- */
+  .cover{
+    position:relative;background:linear-gradient(160deg,#fff7ea 0%,#fdeccd 60%,#f6d9a8 100%);
+    border-radius:24px;padding:42px 36px 38px;overflow:hidden;box-shadow:var(--shadow);
+  }
+  .cover::after{
+    content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
+    background:radial-gradient(circle,#ffe7b8 0%,rgba(255,231,184,0) 70%);
+  }
+  .tag{display:inline-block;font-size:13px;letter-spacing:2px;color:#9a7b3c;
+    border:1px solid #e6c98a;background:#fff7e6;padding:4px 12px;border-radius:999px;}
+  .cover h1{font-size:34px;letter-spacing:1px;margin:16px 0 8px;font-weight:800}
+  .cover .sub{color:#8a6f3e;font-size:15px;max-width:560px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .chip{background:rgba(255,255,255,.7);border:1px solid #ecd6a8;border-radius:10px;
+    padding:8px 14px;font-size:13px;color:#6e5a34}
+  .chip b{color:#3a352f}
+
+  /* ---- section ---- */
+  .sec{margin-top:40px}
+  .sec h2{font-size:20px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .sec h2::before{content:"";width:6px;height:22px;border-radius:4px;background:var(--amber)}
+  .note{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 20px;color:var(--ink-soft);font-size:14.5px;box-shadow:var(--shadow)}
+
+  /* ---- shot card ---- */
+  .shot{display:grid;grid-template-columns:96px 1fr;gap:0;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    margin-bottom:16px;overflow:hidden;box-shadow:var(--shadow)}
+  .frame{position:relative;background:#2a2620;display:flex;align-items:center;justify-content:center;
+    min-height:128px}
+  .frame .time{position:absolute;top:8px;left:10px;font-size:12px;color:#ffe7b8;
+    font-variant-numeric:tabular-nums;letter-spacing:.5px}
+  .frame .lamp{width:34px;height:34px;border-radius:50%;
+    background:radial-gradient(circle,#ffe7a8 0%,#f3b65c 55%,rgba(243,182,92,0) 72%);
+    box-shadow:0 0 26px 10px rgba(243,182,92,.35)}
+  .frame.f2 .lamp{opacity:.5;transform:translateX(10px)}
+  .frame.f3 .lamp{opacity:.85}
+  .frame.f4 .lamp{width:24px;height:24px}
+  .frame.f5 .lamp{width:20px;height:20px;transform:translate(-30px,-26px);opacity:.7}
+  .frame.f6 .lamp{opacity:.9}
+  .frame .label{position:absolute;bottom:8px;right:10px;font-size:11px;color:#cbb79a}
+  .body{padding:16px 18px}
+  .body .row1{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+  .pill{font-size:12px;padding:3px 10px;border-radius:999px;background:#f7efe2;color:#7a6a4a;border:1px solid #ecdfc8}
+  .pill.cam{background:#fbeede;color:#a06d22;border-color:#f0d49b}
+  .body .vis{font-size:15px;color:var(--ink);margin-bottom:6px}
+  .body .grid2{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;font-size:13px;color:var(--ink-soft)}
+  .body .grid2 .k{color:#a89068}
+  .subtitle{margin-top:8px;font-size:13.5px;color:#8a5a1e;background:#fff4de;
+    border-left:3px solid var(--amber);padding:6px 12px;border-radius:0 8px 8px 0}
+  .subtitle.big{font-size:15px;font-weight:700}
+
+  /* ---- hook callout ---- */
+  .hook{background:#2a2620;color:#f4ead6;border-radius:var(--radius);padding:24px 24px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .hook h3{color:#f3b65c;font-size:17px;margin-bottom:14px}
+  .hook ul{list-style:none;display:grid;gap:12px}
+  .hook li{display:flex;gap:12px;font-size:14px;line-height:1.55}
+  .hook li .n{flex:none;width:26px;height:26px;border-radius:50%;background:#f3b65c;color:#2a2620;
+    font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .hook li b{color:#ffe7b8}
+
+  /* ---- spec grid ---- */
+  .spec{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .spec .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+  .spec .card h4{font-size:14px;color:var(--amber);margin-bottom:8px}
+  .spec .card p{font-size:13px;color:var(--ink-soft)}
+
+  /* ---- cost ---- */
+  .cost{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .cost .box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .cost .box h4{font-size:14px;margin-bottom:10px}
+  .cost ul{list-style:none;font-size:13.5px;color:var(--ink-soft)}
+  .cost li{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--line)}
+  .cost li:last-child{border-bottom:none}
+  .cost li b{color:var(--ink)}
+
+  .footer{margin-top:44px;text-align:center;color:#b3a489;font-size:12px}
+  .print-btn{position:fixed;right:18px;bottom:18px;background:var(--amber);color:#fff;border:none;
+    padding:12px 18px;border-radius:999px;font-size:14px;cursor:pointer;box-shadow:0 6px 18px rgba(232,161,60,.4)}
+  @media print{.print-btn{display:none}.shot,.spec .card,.cost .box,.cover,.note,.hook{box-shadow:none}}
+  @media(max-width:680px){.body .grid2{grid-template-columns:1fr}.spec{grid-template-columns:1fr}.cost{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="cover">
+    <span class="tag">竖屏 9:16 · 短视频分镜板 · 约 50s</span>
+    <h1>《那盏一直亮着的灯》</h1>
+    <p class="sub">情绪靶心：戳中"成年人以为自己被世界遗忘，其实一直有人惦记"的孤独感。<br>落点要暖、不要哭——让人看完想转给某个人。</p>
+    <div class="meta">
+      <span class="chip"><b>时长</b> 50s</span>
+      <span class="chip"><b>比例</b> 9:16 竖屏</span>
+      <span class="chip"><b>基调</b> 暖 · 治愈</span>
+      <span class="chip"><b>成本</b> 一人一手机零演员</span>
+      <span class="chip"><b>拍摄</b> 两遍拼剪</span>
+    </div>
+  </div>
+
+  <!-- 分镜 -->
+  <div class="sec">
+    <h2>完整分镜表</h2>
+    <div class="note">总时长约 50 秒。前 3 秒是胜负手，详见下方"钩子专项拆解"。每张卡片含景别 / 运镜 / 画面 / 声音 / 字幕 / 剪辑点。</div>
+
+    <!-- 0-3 -->
+    <div class="shot">
+      <div class="frame f1"><span class="time">0–3s</span><div class="lamp"></div><span class="label">特写→近景</span></div>
+      <div class="body">
+        <div class="row1"><span class="pill">特写→近景</span><span class="pill cam">慢推 push in</span></div>
+        <div class="vis">昏暗房间里，只有桌上一个小夜灯亮着，旁边一张便利贴。画面极静。</div>
+        <div class="grid2"><div><span class="k">声音</span> 环境底噪(极轻)+一声轻微呼吸</div><div><span class="k">剪辑</span> 第0秒出字，慢推制造"心里一空"</div></div>
+        <div class="subtitle big">你有多久，没人等你回家了</div>
+      </div>
+    </div>
+
+    <!-- 3-8 -->
+    <div class="shot">
+      <div class="frame f2"><span class="time">3–8s</span><div class="lamp"></div><span class="label">中景</span></div>
+      <div class="body">
+        <div class="row1"><span class="pill">中景</span><span class="pill cam">固定</span></div>
+        <div class="vis">你推门进来，卸下包，一脸疲惫地靠在门上。</div>
+        <div class="grid2"><div><span class="k">声音</span> 钥匙声、关门声</div><div><span class="k">剪辑</span> 硬切进</div></div>
+        <div class="subtitle">（无字幕）</div>
+      </div>
+    </div>
+
+    <!-- 8-15 -->
+    <div class="shot">
+      <div class="frame f3"><span class="time">8–15s</span><div class="lamp"></div><span class="label">近景</span></div>
+      <div class="body">
+        <div class="row1"><span class="pill">近景</span><span class="pill cam">手持微晃</span></div>
+        <div class="vis">你走到桌前，看到面和便利贴，愣住。</div>
+        <div class="grid2"><div><span class="k">声音</span> BGM起(钢琴,极弱)</div><div><span class="k">剪辑</span> 动作停顿1秒再切</div></div>
+        <div class="subtitle big">便利贴内容：「面在锅里热着，灯给你留着」</div>
+      </div>
+    </div>
+
+    <!-- 15-28 -->
+    <div class="shot">
+      <div class="frame f4"><span class="time">15–28s</span><div class="lamp"></div><span class="label">特写</span></div>
+      <div class="body">
+        <div class="row1"><span class="pill">特写</span><span class="pill cam">固定</span></div>
+        <div class="vis">你低头看面，手指无意识摩挲杯壁，眼眶微红但不哭。</div>
+        <div class="grid2"><div><span class="k">声音</span> BGM渐强一点 + 极轻"叮"</div><div><span class="k">剪辑</span> 配一声极轻的"叮"音效</div></div>
+        <div class="subtitle">原来一直有人，怕我回来黑</div>
+      </div>
+    </div>
+
+    <!-- 28-40 -->
+    <div class="shot">
+      <div class="frame f5"><span class="time">28–40s</span><div class="lamp"></div><span class="label">中景→全景</span></div>
+      <div class="body">
+        <div class="row1"><span class="pill">中景→全景</span><span class="pill cam">缓慢拉出 pull out</span></div>
+        <div class="vis">你坐在桌边吃面，镜头慢慢拉远，整间屋子只有那盏灯暖着。</div>
+        <div class="grid2"><div><span class="k">声音</span> BGM情绪推到顶点后回落</div><div><span class="k">剪辑</span> 拉远制造"释然"感</div></div>
+        <div class="subtitle">成年人的光，有时候就这么小</div>
+      </div>
+    </div>
+
+    <!-- 40-50 -->
+    <div class="shot">
+      <div class="frame f6"><span class="time">40–50s</span><div class="lamp"></div><span class="label">近景</span></div>
+      <div class="body">
+        <div class="row1"><span class="pill">近景</span><span class="pill cam">固定</span></div>
+        <div class="vis">你对镜头极淡地笑一下，抬手关灯（或留灯）。</div>
+        <div class="grid2"><div><span class="k">声音</span> BGM尾音</div><div><span class="k">剪辑</span> 黑场/留灯收尾，字幕驻留</div></div>
+        <div class="subtitle">今晚，也有人等你吗</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 钩子 -->
+  <div class="sec">
+    <h2>前 3 秒钩子专项拆解</h2>
+    <div class="hook">
+      <h3>你最容易翻车的地方 —— 把它当铁律</h3>
+      <ul>
+        <li><span class="n">1</span><div><b>画面必须"空"：</b>别放人、别放动作，就一盏灯+一张纸。越静，钩子越狠。</div></li>
+        <li><span class="n">2</span><div><b>慢推别推太快：</b>3秒推10%–15%距离足够，推猛了像恐怖片。</div></li>
+        <li><span class="n">3</span><div><b>字幕半句话：</b>「你有多久，没人等你回家了」是问句、是戳，不是陈述。说完立刻切画面，别等反应。</div></li>
+        <li><span class="n">4</span><div><b>声音先空后入：</b>前1.5秒几乎无声，让人"突然安静下来"才被抓住。</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 音乐调色字幕 -->
+  <div class="sec">
+    <h2>音乐 / 调色 / 字幕风格</h2>
+    <div class="spec">
+      <div class="card">
+        <h4>🎹 BGM</h4>
+        <p>钢琴 solo，无鼓点。前段极弱、中段微强、尾段回落。平台音乐库搜"治愈 钢琴 舒缓"。</p>
+      </div>
+      <div class="card">
+        <h4>🎨 调色</h4>
+        <p>日系清新偏暖——高亮度、低对比、阴影微微提亮。别压成黑色电影感，共鸣型要"暖"。</p>
+      </div>
+      <div class="card">
+        <h4>🔤 字幕</h4>
+        <p>白字+细描边，放画面下三分之一。关键句（如"灯给你留着"）用稍大字号。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 成本与拍摄 -->
+  <div class="sec">
+    <h2>拍摄成本与执行</h2>
+    <div class="cost">
+      <div class="box">
+        <h4>道具清单（零演员 / 零场地）</h4>
+        <ul>
+          <li><span>一人</span><b>出镜即拍摄</b></li>
+          <li><span>一手机</span><b>主摄设备</b></li>
+          <li><span>一盏小夜灯</span><b>核心视觉</b></li>
+          <li><span>一张便利贴</span><b>情绪支点</b></li>
+          <li><span>一碗面</span><b>收尾道具</b></li>
+        </ul>
+      </div>
+      <div class="box">
+        <h4>两遍拍摄计划</h4>
+        <ul>
+          <li><span>第 1 遍</span><b>"疲惫版"进门</b></li>
+          <li><span>第 2 遍</span><b>"低头看面"特写</b></li>
+          <li><span>后期</span><b>两遍拼剪</b></li>
+          <li><span>总场租</span><b>¥ 0</b></li>
+          <li><span>总演员费</span><b>¥ 0</b></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">分镜板由脚本整理生成 · 现场以实际灯光与情绪为准 · 落点要暖</div>
+</div>
+<button class="print-btn" onclick="window.print()">打印 / 导出 PDF</button>
+</body>
+</html>
