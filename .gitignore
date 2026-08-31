@@ -1,0 +1,13 @@
+# ===== Agent internal data (do not publish) =====
+.workbuddy-ai/
+
+# ===== OS / editor cruft =====
+.DS_Store
+Thumbs.db
+*.swp
+
+# ===== Build artifacts =====
+.build/
+DerivedData/
+xcuserdata/
+*.xcodeproj/xcuserdata/
